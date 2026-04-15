@@ -21,6 +21,7 @@ class Base(Configuration):
         "django.contrib.messages",
         "django.contrib.staticfiles",
         "rest_framework",
+        "drf_spectacular",
         "backend",
     ]
 
@@ -53,9 +54,7 @@ class Base(Configuration):
 
     WSGI_APPLICATION = "backend.wsgi.application"
 
-    DATABASES = DatabaseURLValue(
-        "postgres://postgres:postgres@database/postgres"
-    )
+    DATABASES = DatabaseURLValue("postgres://postgres:postgres@database/postgres")
 
     AUTH_PASSWORD_VALIDATORS = [
         {
@@ -79,3 +78,12 @@ class Base(Configuration):
 
     STATIC_URL = "static/"
     STATIC_ROOT = str(BASE_DIR / "staticfiles")
+
+    REST_FRAMEWORK = {
+        "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    }
+
+    SPECTACULAR_SETTINGS = {
+        "TITLE": "Ovum API",
+        "VERSION": "0.1.0",
+    }

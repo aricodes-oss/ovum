@@ -7,6 +7,8 @@ RUN poetry install --without dev
 
 COPY . .
 
+ENV DJANGO_CONFIGURATION=Production
+
 CMD poetry run python manage.py wait_for_db && \
   poetry run python manage.py collectstatic --noinput && \
   poetry run python manage.py migrate && \
