@@ -18,19 +18,21 @@ export default defineConfig({
       },
     },
   },
-  /* allauth: {
+  allauth: {
     input: {
-      target: './allauth-schema.yaml',
+      target: 'https://django-allauth.readthedocs.io/en/latest/headless/openapi-specification/openapi.yaml',
+      // We must disable validation because the official allauth OpenAPI spec
+      // contains an external reference to `description.md` which isn't valid JSON/YAML,
+      // causing the default validation pipeline to crash.
+      unsafeDisableValidation: true,
       override: {
-        transformer: './api/mutator/add-client.js',
+        transformer: './api/mutator/allauth-transformer.ts',
       },
     },
     output: {
       target: './api/allauth.ts',
       client: 'react-query',
       httpClient: 'axios',
-      baseUrl: '/api/',
-      prettier: true,
       override: {
         namingConvention: {
           enum: 'camelCase',
@@ -41,5 +43,5 @@ export default defineConfig({
         },
       },
     },
-  }, */
+  },
 });

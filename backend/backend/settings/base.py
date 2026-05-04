@@ -22,6 +22,9 @@ class Base(Configuration):
         "django.contrib.staticfiles",
         "rest_framework",
         "drf_spectacular",
+        "allauth",
+        "allauth.account",
+        "allauth.headless",
         "backend",
     ]
 
@@ -33,6 +36,7 @@ class Base(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "allauth.account.middleware.AccountMiddleware",
     ]
 
     ROOT_URLCONF = "backend.urls"
@@ -76,8 +80,15 @@ class Base(Configuration):
     USE_I18N = True
     USE_TZ = True
 
-    STATIC_URL = "static/"
+    STATIC_URL = "api/static/"
     STATIC_ROOT = str(BASE_DIR / "staticfiles")
+
+    AUTHENTICATION_BACKENDS = [
+        "django.contrib.auth.backends.ModelBackend",
+        "allauth.account.auth_backends.AuthenticationBackend",
+    ]
+
+    HEADLESS_ONLY = True
 
     REST_FRAMEWORK = {
         "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
