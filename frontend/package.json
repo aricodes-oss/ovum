@@ -27,6 +27,8 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "openapi3-ts": "^4.5.0",
     "orval": "^8.9.1",
     "prettier": "^3.8.3",

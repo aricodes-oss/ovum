@@ -34,7 +34,9 @@ export const customInstance = async <T>(
   options?: AxiosRequestConfig,
 ): Promise<T> => {
   let cookieStore = Cookies as CookieStore;
-  let nextCookiesSet: ((name: string, value: string, options?: NextCookieOptions) => void) | undefined;
+  let nextCookiesSet:
+    | ((name: string, value: string, options?: NextCookieOptions) => void)
+    | undefined;
 
   if (isServer) {
     try {
@@ -45,7 +47,7 @@ export const customInstance = async <T>(
 
       const cookie = headersList.get('cookie');
       cookieStore = cookiesList as unknown as CookieStore;
-      
+
       // Store reference to Next.js cookie setter
       if (typeof cookiesList.set === 'function') {
         nextCookiesSet = cookiesList.set.bind(cookiesList);
@@ -53,9 +55,10 @@ export const customInstance = async <T>(
 
       if (cookie) {
         const csrfCookie = cookieStore.get('csrftoken');
-        const csrfToken = csrfCookie && typeof csrfCookie === 'object' && 'value' in csrfCookie 
-          ? (csrfCookie as { value: string }).value 
-          : (csrfCookie as string) || '';
+        const csrfToken =
+          csrfCookie && typeof csrfCookie === 'object' && 'value' in csrfCookie
+            ? (csrfCookie as { value: string }).value
+            : (csrfCookie as string) || '';
 
         config.headers = {
           ...config.headers,

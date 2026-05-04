@@ -20,7 +20,8 @@ export default defineConfig({
   },
   allauth: {
     input: {
-      target: 'https://django-allauth.readthedocs.io/en/latest/headless/openapi-specification/openapi.yaml',
+      target:
+        'https://django-allauth.readthedocs.io/en/latest/headless/openapi-specification/openapi.yaml',
       // We must disable validation because the official allauth OpenAPI spec
       // contains an external reference to `description.md` which isn't valid JSON/YAML,
       // causing the default validation pipeline to crash.
