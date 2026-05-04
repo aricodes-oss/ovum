@@ -1,6 +1,6 @@
 # Ovum
 
-Ovum is a full-stack web application with a Django REST API backend and Next.js frontend, orchestrated via Docker Compose behind a Caddy reverse proxy.
+Ovum is a template for a full-stack web application with a Django REST API backend and Next.js frontend, orchestrated via Docker Compose behind a Caddy reverse proxy.
 
 ## Architecture
 
@@ -20,8 +20,7 @@ Ensure you have Docker and Docker Compose installed.
     docker compose up
     ```
 3.  **Access the application**
-    - Frontend/API: [http://localhost:3000](http://localhost:3000)
-    - Django Admin: [http://localhost:3000/admin/](http://localhost:3000/admin/)
+    - Frontend: [http://localhost:3000](http://localhost:3000)
 
 ## Development Commands
 

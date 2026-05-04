@@ -9,4 +9,3 @@ class Command(RunDramatiqCommand):
         else:
             tasks_modules = ["backend.dramatiq_setup"]
         return tasks_modules  # type: ignore
-
