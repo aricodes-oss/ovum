@@ -17,28 +17,28 @@ Ovum is a full-stack web application with a Django REST API backend and Next.js 
 
 Start all services (frontend, backend, PostgreSQL, Valkey, Caddy):
 ```
-docker-compose up
+docker compose up
 ```
 Both frontend and backend have volume mounts for live reload during development.
 
-**Always run commands against the services through `docker-compose exec` (if the service is already running) or `docker-compose run --rm` (for one-off commands), unless otherwise specified.** Do not `cd` into a project directory and run commands on the host directly.
+**Always prefer `docker compose exec` for running commands against services. Use `docker compose run --rm` only for one-off commands where the service is not already running.** Do not `cd` into a project directory and run commands on the host directly.
 
 ### Frontend (frontend/)
 ```bash
-docker-compose exec frontend npm run dev       # Next.js dev server
-docker-compose exec frontend npm run build     # Production build
-docker-compose exec frontend npm run lint      # ESLint
-docker-compose run --rm frontend npm install <package>  # Add a dependency
+docker compose exec frontend npm run dev       # Next.js dev server
+docker compose exec frontend npm run build     # Production build
+docker compose exec frontend npm run lint      # ESLint
+docker compose exec frontend npm install <package>  # Add a dependency
 ```
 - TypeScript path alias: `@/*` maps to project root
 - ESLint 9 with next/core-web-vitals and next/typescript configs
 
 ### Backend (backend/)
 ```bash
-docker-compose exec backend poetry run python manage.py runserver 0.0.0.0:3000   # Dev server
-docker-compose exec backend poetry run python manage.py migrate                    # Run migrations
-docker-compose exec backend poetry run python manage.py createsuperuser            # Create admin user
-docker-compose run --rm backend poetry add <package>                               # Add a dependency
+docker compose exec backend poetry run python manage.py runserver 0.0.0.0:3000   # Dev server
+docker compose exec backend poetry run python manage.py migrate                    # Run migrations
+docker compose exec backend poetry run python manage.py createsuperuser            # Create admin user
+docker compose exec backend poetry add <package>                               # Add a dependency
 ```
 - Poetry for dependency management
 - Configuration via environment variables (django-environ): `DATABASE_URL`, `DJANGO_PRODUCTION`, `DJANGO_DEBUG`

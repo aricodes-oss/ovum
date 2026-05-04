@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.9",
+    "@types/set-cookie-parser": "^2.4.10",
     "axios": "^1.16.0",
     "js-cookie": "^3.0.5",
     "next": "16.2.3",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "set-cookie-parser": "^3.1.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
