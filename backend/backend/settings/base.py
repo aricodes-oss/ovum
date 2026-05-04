@@ -91,8 +91,12 @@ class Base(Configuration):
     HEADLESS_ONLY = True
 
     REST_FRAMEWORK = {
-        "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+        "DEFAULT_SCHEMA_CLASS": "drf_standardized_errors.openapi.AutoSchema",
     }
+
+    CSRF_TRUSTED_ORIGINS = ["*"]
+
+    ACCOUNT_EMAIL_VERIFICATION = "none"
 
     SPECTACULAR_SETTINGS = {
         "TITLE": "Ovum API",

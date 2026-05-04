@@ -77,27 +77,40 @@ export const customInstance = async <T>(
     };
   }
 
-  const response = await client({ ...config, ...options });
+  try {
+    const response = await client({ ...config, ...options });
 
-  // Forward Set-Cookie headers from Backend -> Next.js Server -> Browser
-  if (isServer && nextCookiesSet && response.headers && response.headers['set-cookie']) {
-    const setCookieHeaders = response.headers['set-cookie'];
-    const parsedCookies = setCookieParser.parse(setCookieHeaders);
+    // Forward Set-Cookie headers from Backend -> Next.js Server -> Browser
+    if (isServer && nextCookiesSet && response.headers && response.headers['set-cookie']) {
+      const setCookieHeaders = response.headers['set-cookie'];
+      const parsedCookies = setCookieParser.parse(setCookieHeaders);
 
-    for (const cookie of parsedCookies) {
-      nextCookiesSet(cookie.name, cookie.value, {
-        domain: cookie.domain,
-        path: cookie.path,
-        expires: cookie.expires,
-        maxAge: cookie.maxAge,
-        httpOnly: cookie.httpOnly,
-        secure: cookie.secure,
-        sameSite: cookie.sameSite?.toLowerCase() as NextCookieOptions['sameSite'],
-      });
+      for (const cookie of parsedCookies) {
+        nextCookiesSet(cookie.name, cookie.value, {
+          domain: cookie.domain,
+          path: cookie.path,
+          expires: cookie.expires,
+          maxAge: cookie.maxAge,
+          httpOnly: cookie.httpOnly,
+          secure: cookie.secure,
+          sameSite: cookie.sameSite?.toLowerCase() as NextCookieOptions['sameSite'],
+        });
+      }
     }
-  }
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    if (
+      Axios.isAxiosError(error) &&
+      error.response?.status === 401 &&
+      config.url === '/api/_allauth/browser/v1/auth/session' &&
+      config.method?.toUpperCase() === 'DELETE'
+    ) {
+      // For DELETE /session, 401 is a valid "not authenticated" state.
+      return error.response.data as T;
+    }
+    throw error;
+  }
 };
 
 export default client;
