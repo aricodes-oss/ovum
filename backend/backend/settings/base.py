@@ -88,15 +88,19 @@ class Base(Configuration):
         "allauth.account.auth_backends.AuthenticationBackend",
     ]
 
+    #
+    # Allauth
+    #
     HEADLESS_ONLY = True
+    ACCOUNT_EMAIL_VERIFICATION = "none"
+    # Note: allauth.socialaccount is intentionally excluded from INSTALLED_APPS
+    # to disable social account login.
 
     REST_FRAMEWORK = {
         "DEFAULT_SCHEMA_CLASS": "drf_standardized_errors.openapi.AutoSchema",
     }
 
     CSRF_TRUSTED_ORIGINS = ["http://*", "http://*"]
-
-    ACCOUNT_EMAIL_VERIFICATION = "none"
 
     SPECTACULAR_SETTINGS = {
         "TITLE": "Ovum API",
