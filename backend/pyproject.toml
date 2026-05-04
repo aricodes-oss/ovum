@@ -29,26 +29,76 @@ dev = [
   "ruff (>=0.15.10,<0.16.0)",
   "pytest (>=9.0.3,<10.0.0)",
   "pytest-django (>=4.12.0,<5.0.0)",
+  "pytest-cov (>=7.1.0,<8.0.0)",
 ]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "backend.settings"
 DJANGO_CONFIGURATION = "Local"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = "--reuse-db --strict-markers --strict-config --tb=short --cov=. --cov-report=term-missing:skip-covered"
+testpaths = ["backend", "polls"]
 
 [tool.ruff]
 target-version = "py312"
 line-length = 110
+extend-exclude = ["*/migrations/*"]
 
 [tool.ruff.lint]
 select = [
-  "E",  # pycodestyle errors
-  "W",  # pycodestyle warnings
-  "F",  # pyflakes
-  "I",  # isort
-  "B",  # flake8-bugbear
-  "UP", # pyupgrade
-  "DJ", # flake8-django
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # isort
+  "B",   # flake8-bugbear
+  "UP",  # pyupgrade
+  "DJ",  # flake8-django
+  "S",   # flake8-bandit (Security)
+  "C4",  # flake8-comprehensions
+  "T20", # flake8-print
+  "N",   # pep8-naming
+  "RUF", # Ruff-specific rules
+  "PL",  # Pylint
+]
+ignore = [
+  "PLR0913", # Too many arguments to function call
+  "S101",    # Use of assert detected (useful for pytest)
+  "RUF012",  # Mutable class attributes (annoying with django-configurations)
+  "S105",    # Hardcoded password (triggered by SECRET_KEY)
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"manage.py" = ["PLC0415"]
+"backend/settings/__init__.py" = ["PLC0415"]
+"backend/settings/*.py" = ["S105"]
+
 [tool.ruff.lint.isort]
-known-first-party = ["backend"]
+known-first-party = ["backend", "polls"]
+section-order = ["future", "standard-library", "third-party", "django", "first-party", "local-folder"]
+
+[tool.ruff.lint.isort.sections]
+django = ["django", "rest_framework", "configurations"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+disallow_untyped_defs = true
+warn_return_any = true
+show_error_codes = true
+warn_unused_ignores = true
+warn_unreachable = true
+strict_equality = true
+no_implicit_optional = true
+plugins = ["./configurations_mypy_plugin.py", "mypy_drf_plugin.main"]
+exclude = [
+    '^manage\.py$',
+    '^gunicorn\.conf\.py$',
+    '.*/migrations/.*',
+]
+
+[[tool.mypy.overrides]]
+module = ["environ.*", "configurations.*", "rest_framework_camel_case.*"]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "backend.settings"

@@ -7,8 +7,9 @@ From https://github.com/typeddjango/django-stubs/pull/180#issuecomment-820062352
 
 import os
 
-from configurations.importer import install
 from mypy_django_plugin import main
+
+from configurations.importer import install
 
 
 def plugin(version: str) -> type:
