@@ -60,6 +60,15 @@ class Base(Configuration):
 
     DATABASES = DatabaseURLValue("postgres://postgres:postgres@database/postgres")
 
+    CACHES = {
+        "default": {
+            "BACKEND": "django_valkey.cache.ValkeyCache",
+            "LOCATION": "redis://cache:6379/1",
+        }
+    }
+
+    SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+
     AUTH_PASSWORD_VALIDATORS = [
         {
             "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",

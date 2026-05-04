@@ -284,6 +284,31 @@ django = "*"
 typing-extensions = "*"
 
 [[package]]
+name = "django-valkey"
+version = "0.4.0"
+description = "a valkey backend for django"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_valkey-0.4.0-py3-none-any.whl", hash = "sha256:48302d381e152b2def5d859232ff59db5839387ffe01b17ae4cf75736585a8ad"},
+    {file = "django_valkey-0.4.0.tar.gz", hash = "sha256:738588747c61cfcffa04129b738c46b65bfa68971b680b4cdb9e88699cff6f89"},
+]
+
+[package.dependencies]
+django = ">=4.2,<5.0.dev0 || >=5.2.dev0"
+valkey = ">=6.0.2"
+
+[package.extras]
+brotli = ["brotli (>=1.1.0)"]
+libvalkey = ["libvalkey (>=4.0.1)"]
+lz4 = ["lz4 (>=4.3.3)"]
+msgpack = ["msgpack (>=1.1.0)"]
+msgspec = ["msgspec (>=0.19.0)"]
+pyzstd = ["backports-zstd (>=1.0.0)"]
+zstd = ["backports-zstd (>=1.0.0)"]
+
+[[package]]
 name = "djangorestframework"
 version = "3.17.1"
 description = "Web APIs for Django, made easy."
@@ -1087,7 +1112,23 @@ files = [
     {file = "uritemplate-4.2.0.tar.gz", hash = "sha256:480c2ed180878955863323eea31b0ede668795de182617fef9c6ca09e6ec9d0e"},
 ]
 
+[[package]]
+name = "valkey"
+version = "6.1.1"
+description = "Python client for Valkey forked from redis-py"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "valkey-6.1.1-py3-none-any.whl", hash = "sha256:e2691541c6e1503b53c714ad9a35551ac9b7c0bbac93865f063dbc859a46de92"},
+    {file = "valkey-6.1.1.tar.gz", hash = "sha256:5880792990c6c2b5eb604a5ed5f98f300880b6dd92d123819b66ed54bb259731"},
+]
+
+[package.extras]
+libvalkey = ["libvalkey (>=4.0.1)"]
+ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"]
+
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4"
-content-hash = "8cc9fef3402a26dcfaac8082f666f1e76d5e1a1fbae2a363a4b48c82f8434849"
+content-hash = "e15665c382dcfa0e18dd46f7ece032c32b0d20b1d0f42d26b8e451e5de205cf4"
