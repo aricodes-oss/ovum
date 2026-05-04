@@ -5,7 +5,6 @@
  * django-allauth headless API modified for ovum
  * OpenAPI spec version: 1
  */
-import { useMutation, useQuery } from '@tanstack/react-query';
 import type {
   DataTag,
   DefinedInitialDataOptions,
@@ -20,8 +19,10 @@ import type {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { customInstance } from './mutator/custom-instance';
+
 /**
  * An epoch based timestamp (trivial to parse using: `new Date(value)*1000`)
 

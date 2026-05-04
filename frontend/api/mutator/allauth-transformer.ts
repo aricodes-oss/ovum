@@ -1,8 +1,8 @@
 import type {
   OpenAPIObject,
-  PathItemObject,
   OperationObject,
   ParameterObject,
+  PathItemObject,
   ReferenceObject,
 } from 'openapi3-ts/oas30';
 
@@ -24,10 +24,8 @@ export default function allauthTransformer(schema: OpenAPIObject): OpenAPIObject
     const newPathObj: PathItemObject = { ...(pathObj as PathItemObject) };
 
     // Determine if this path has multiple HTTP methods
-    const httpMethods = ['get', 'post', 'put', 'delete', 'patch'];
-    const methodsInPath = Object.keys(newPathObj).filter((k) =>
-      httpMethods.includes(k.toLowerCase()),
-    );
+    const httpMethods = new Set(['get', 'post', 'put', 'delete', 'patch']);
+    const methodsInPath = Object.keys(newPathObj).filter((k) => httpMethods.has(k.toLowerCase()));
     const hasMultipleMethods = methodsInPath.length > 1;
 
     // Build the base Operation ID from the URL path
@@ -39,26 +37,27 @@ export default function allauthTransformer(schema: OpenAPIObject): OpenAPIObject
     const baseId = pathParts.map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join('');
 
     for (const [method, methodObj] of Object.entries(newPathObj)) {
-      if (typeof methodObj === 'object' && methodObj !== null) {
-        // Set operationId to override Orval's default naming (which includes ApiAllauthBrowserV1)
-        if (httpMethods.includes(method.toLowerCase())) {
-          const typedMethodObj = methodObj as OperationObject;
-          const operationId = hasMultipleMethods
-            ? method.toLowerCase() + baseId
-            : baseId.charAt(0).toLowerCase() + baseId.slice(1);
+      if (
+        typeof methodObj === 'object' &&
+        methodObj !== null && // Set operationId to override Orval's default naming (which includes ApiAllauthBrowserV1)
+        httpMethods.has(method.toLowerCase())
+      ) {
+        const typedMethodObj = methodObj as OperationObject;
+        const operationId = hasMultipleMethods
+          ? method.toLowerCase() + baseId
+          : baseId.charAt(0).toLowerCase() + baseId.slice(1);
 
-          typedMethodObj.operationId = operationId;
+        typedMethodObj.operationId = operationId;
 
-          if (typedMethodObj.parameters) {
-            // Filter out the Client parameter ref
-            typedMethodObj.parameters = typedMethodObj.parameters.filter(
-              (p: ParameterObject | ReferenceObject) =>
-                (p as ReferenceObject).$ref !== '#/components/parameters/Client',
-            );
+        if (typedMethodObj.parameters) {
+          // Filter out the Client parameter ref
+          typedMethodObj.parameters = typedMethodObj.parameters.filter(
+            (p: ParameterObject | ReferenceObject) =>
+              (p as ReferenceObject).$ref !== '#/components/parameters/Client',
+          );
 
-            if (typedMethodObj.parameters.length === 0) {
-              delete typedMethodObj.parameters;
-            }
+          if (typedMethodObj.parameters.length === 0) {
+            delete typedMethodObj.parameters;
           }
         }
       }
