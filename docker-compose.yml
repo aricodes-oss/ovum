@@ -17,13 +17,13 @@ services:
     volumes:
       - ./backend:/code
   database:
-    image: postgres:latest
+    image: postgres:17
     environment:
       - POSTGRES_PASSWORD=postgres
   cache:
-    image: valkey/valkey:latest
+    image: valkey/valkey:8
   caddy:
-    image: caddy:latest
+    image: caddy:2
     ports:
       - 3000:3000
     volumes:
