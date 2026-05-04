@@ -26,7 +26,6 @@ class Base(Configuration):
         "allauth.account",
         "allauth.headless",
         "backend",
-        "example",
     ]
 
     MIDDLEWARE = [
