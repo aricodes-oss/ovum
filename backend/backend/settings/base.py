@@ -26,6 +26,7 @@ class Base(Configuration):
         "allauth.account",
         "allauth.headless",
         "backend",
+        "example",
     ]
 
     MIDDLEWARE = [
@@ -94,7 +95,7 @@ class Base(Configuration):
         "DEFAULT_SCHEMA_CLASS": "drf_standardized_errors.openapi.AutoSchema",
     }
 
-    CSRF_TRUSTED_ORIGINS = ["*"]
+    CSRF_TRUSTED_ORIGINS = ["http://*", "http://*"]
 
     ACCOUNT_EMAIL_VERIFICATION = "none"
 
