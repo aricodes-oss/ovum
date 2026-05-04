@@ -1,5 +1,9 @@
-from backend.settings.base import Base
-from backend.settings.local import Local
+from configurations.importer import install
+
+install(check_options=True)
+
+from backend.settings.base import Base  # noqa: E402
+from backend.settings.local import Local  # noqa: E402
 
 __all__ = ["Base", "Local"]
 

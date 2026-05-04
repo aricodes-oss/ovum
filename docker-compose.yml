@@ -16,6 +16,16 @@ services:
       dockerfile: Dockerfile.local
     volumes:
       - ./backend:/code
+  worker:
+    depends_on:
+      - database
+      - cache
+    build:
+      context: backend
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./backend:/code
+    command: poetry run python manage.py ovum_rundramatiq
   database:
     image: postgres:17
     environment:

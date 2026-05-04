@@ -20,6 +20,7 @@ class Base(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "django_dramatiq",
         "rest_framework",
         "drf_spectacular",
         "allauth",
@@ -60,14 +61,41 @@ class Base(Configuration):
 
     DATABASES = DatabaseURLValue("postgres://postgres:postgres@database/postgres")
 
+    VALKEY_URL = "redis://cache:6379"
+
     CACHES = {
         "default": {
             "BACKEND": "django_valkey.cache.ValkeyCache",
-            "LOCATION": "redis://cache:6379/1",
+            "LOCATION": f"{VALKEY_URL}/1",
         }
     }
 
     SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+
+    DRAMATIQ_BROKER = {
+        "BROKER": "dramatiq.brokers.redis.RedisBroker",
+        "OPTIONS": {
+            "url": f"{VALKEY_URL}/0",
+        },
+        "MIDDLEWARE": [
+            "dramatiq.middleware.AgeLimit",
+            "dramatiq.middleware.TimeLimit",
+            "dramatiq.middleware.Callbacks",
+            "dramatiq.middleware.Retries",
+            "django_dramatiq.middleware.DbConnectionsMiddleware",
+            "django_dramatiq.middleware.AdminMiddleware",
+        ],
+    }
+
+    DRAMATIQ_RESULT_BACKEND = {
+        "BACKEND": "dramatiq.results.backends.redis.RedisBackend",
+        "BACKEND_OPTIONS": {
+            "url": f"{VALKEY_URL}/2",
+        },
+        "MIDDLEWARE_OPTIONS": {
+            "result_ttl": 1000 * 60 * 10,
+        },
+    }
 
     AUTH_PASSWORD_VALIDATORS = [
         {

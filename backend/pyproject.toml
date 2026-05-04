@@ -17,6 +17,8 @@ dependencies = [
   "django-allauth (>=65.16.1,<66.0.0)",
   "djangorestframework-camel-case (>=1.4.2,<2.0.0)",
   "django-valkey (>=0.4.0,<0.5.0)",
+  "django-dramatiq (>=0.15.0,<0.16.0)",
+  "dramatiq[redis] (>=2.1.0,<3.0.0)",
 ]
 
 
