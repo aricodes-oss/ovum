@@ -1,0 +1,24 @@
+# Example production Caddyfile.
+#
+# Caddy auto-provisions TLS certificates from Let's Encrypt for any real
+# hostname; just point your DNS at this host and replace example.com below.
+#
+# Mount this file in place of the dev Caddyfile, e.g.:
+#   volumes:
+#     - ./Caddyfile.production:/etc/caddy/Caddyfile
+# and expose ports 80 and 443 instead of 3000.
+
+example.com {
+  encode zstd gzip
+
+  reverse_proxy /api* backend:3000 {
+    header_up Host {http.reverse_proxy.upstream.host}
+    header_up X-Forwarded-Proto {scheme}
+  }
+
+  reverse_proxy frontend:3000 {
+    header_up Host {http.reverse_proxy.upstream.host}
+    header_up X-Forwarded-Proto {scheme}
+    flush_interval -1
+  }
+}

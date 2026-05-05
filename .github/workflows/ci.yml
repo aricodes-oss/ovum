@@ -145,3 +145,34 @@ jobs:
 
       - name: Run Vitest
         run: npm test -- --run
+
+  api-drift:
+    name: API Client Drift Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start backend stack
+        run: docker compose up -d backend
+
+      - name: Wait for backend schema endpoint
+        run: |
+          for _ in $(seq 1 60); do
+            if docker compose exec -T backend python -c "import urllib.request; urllib.request.urlopen('http://localhost:3000/api/schema/').read()" > /dev/null 2>&1; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Backend never became healthy" >&2
+          docker compose logs backend
+          exit 1
+
+      - name: Regenerate API clients
+        run: docker compose run --rm frontend npm run api:generate
+
+      - name: Verify no drift in generated clients
+        run: |
+          if ! git diff --exit-code frontend/api/backend.ts frontend/api/allauth.ts; then
+            echo "::error::Generated API clients are out of date. Run 'npm run api:generate' and commit."
+            exit 1
+          fi

@@ -9,8 +9,10 @@ services:
       - ./frontend:/code
   backend:
     depends_on:
-      - database
-      - cache
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
     build:
       context: backend
       dockerfile: Dockerfile.local
@@ -18,8 +20,10 @@ services:
       - ./backend:/code
   worker:
     depends_on:
-      - database
-      - cache
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
     build:
       context: backend
       dockerfile: Dockerfile.local
@@ -30,8 +34,18 @@ services:
     image: postgres:17
     environment:
       - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
   cache:
     image: valkey/valkey:8
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
   caddy:
     image: caddy:2
     ports:
