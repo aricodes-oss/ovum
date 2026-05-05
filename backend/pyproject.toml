@@ -73,7 +73,7 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "manage.py" = ["PLC0415"]
 "backend/settings/__init__.py" = ["PLC0415"]
-"backend/settings/*.py" = ["S105"]
+"backend/settings/*.py" = ["S105", "N802"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["backend", "polls"]

@@ -63,39 +63,45 @@ class Base(Configuration):
 
     VALKEY_URL = "redis://cache:6379"
 
-    CACHES = {
-        "default": {
-            "BACKEND": "django_valkey.cache.ValkeyCache",
-            "LOCATION": f"{VALKEY_URL}/1",
+    @property
+    def CACHES(self) -> dict:
+        return {
+            "default": {
+                "BACKEND": "django_valkey.cache.ValkeyCache",
+                "LOCATION": f"{self.VALKEY_URL}/1",
+            }
         }
-    }
 
     SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
-    DRAMATIQ_BROKER = {
-        "BROKER": "dramatiq.brokers.redis.RedisBroker",
-        "OPTIONS": {
-            "url": f"{VALKEY_URL}/0",
-        },
-        "MIDDLEWARE": [
-            "dramatiq.middleware.AgeLimit",
-            "dramatiq.middleware.TimeLimit",
-            "dramatiq.middleware.Callbacks",
-            "dramatiq.middleware.Retries",
-            "django_dramatiq.middleware.DbConnectionsMiddleware",
-            "django_dramatiq.middleware.AdminMiddleware",
-        ],
-    }
+    @property
+    def DRAMATIQ_BROKER(self) -> dict:
+        return {
+            "BROKER": "dramatiq.brokers.redis.RedisBroker",
+            "OPTIONS": {
+                "url": f"{self.VALKEY_URL}/0",
+            },
+            "MIDDLEWARE": [
+                "dramatiq.middleware.AgeLimit",
+                "dramatiq.middleware.TimeLimit",
+                "dramatiq.middleware.Callbacks",
+                "dramatiq.middleware.Retries",
+                "django_dramatiq.middleware.DbConnectionsMiddleware",
+                "django_dramatiq.middleware.AdminMiddleware",
+            ],
+        }
 
-    DRAMATIQ_RESULT_BACKEND = {
-        "BACKEND": "dramatiq.results.backends.redis.RedisBackend",
-        "BACKEND_OPTIONS": {
-            "url": f"{VALKEY_URL}/2",
-        },
-        "MIDDLEWARE_OPTIONS": {
-            "result_ttl": 1000 * 60 * 10,
-        },
-    }
+    @property
+    def DRAMATIQ_RESULT_BACKEND(self) -> dict:
+        return {
+            "BACKEND": "dramatiq.results.backends.redis.RedisBackend",
+            "BACKEND_OPTIONS": {
+                "url": f"{self.VALKEY_URL}/2",
+            },
+            "MIDDLEWARE_OPTIONS": {
+                "result_ttl": 1000 * 60 * 10,
+            },
+        }
 
     AUTH_PASSWORD_VALIDATORS = [
         {
