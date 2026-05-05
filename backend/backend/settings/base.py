@@ -9,10 +9,6 @@ class Base(Configuration):
 
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-    SECRET_KEY = "django-insecure-^l0fmt8tuah=3=hy&oz!7-2i@n(t#f!$j5p9wgia8uhns6o9(^"
-
-    ALLOWED_HOSTS = ["*"]
-
     INSTALLED_APPS = [
         "django.contrib.admin",
         "django.contrib.auth",
@@ -142,8 +138,6 @@ class Base(Configuration):
     REST_FRAMEWORK = {
         "DEFAULT_SCHEMA_CLASS": "drf_standardized_errors.openapi.AutoSchema",
     }
-
-    CSRF_TRUSTED_ORIGINS = ["https://*", "http://*"]
 
     SPECTACULAR_SETTINGS = {
         "TITLE": "Ovum API",

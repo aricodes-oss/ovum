@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = [{ name = "Aria Taylor", email = "ari@aricodes.net" }]
 license = "MIT"
-requires-python = ">=3.12,<4"
+requires-python = ">=3.14,<4"
 dependencies = [
   "django (>=6.0.4,<7.0.0)",
   "django-stubs[compatible-mypy] (>=6.0.2,<7.0.0)",
@@ -40,10 +40,10 @@ DJANGO_SETTINGS_MODULE = "backend.settings"
 DJANGO_CONFIGURATION = "Local"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 addopts = "--reuse-db --strict-markers --strict-config --tb=short --cov=. --cov-report=term-missing:skip-covered"
-testpaths = ["backend", "polls"]
+testpaths = ["backend"]
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py313"
 line-length = 110
 extend-exclude = ["*/migrations/*"]
 
@@ -76,14 +76,14 @@ ignore = [
 "backend/settings/*.py" = ["S105", "N802"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["backend", "polls"]
+known-first-party = ["backend"]
 section-order = ["future", "standard-library", "third-party", "django", "first-party", "local-folder"]
 
 [tool.ruff.lint.isort.sections]
 django = ["django", "rest_framework", "configurations"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.14"
 check_untyped_defs = true
 disallow_untyped_defs = true
 warn_return_any = true
