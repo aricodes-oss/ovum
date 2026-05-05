@@ -143,7 +143,7 @@ class Base(Configuration):
         "DEFAULT_SCHEMA_CLASS": "drf_standardized_errors.openapi.AutoSchema",
     }
 
-    CSRF_TRUSTED_ORIGINS = ["http://*", "http://*"]
+    CSRF_TRUSTED_ORIGINS = ["https://*", "http://*"]
 
     SPECTACULAR_SETTINGS = {
         "TITLE": "Ovum API",
