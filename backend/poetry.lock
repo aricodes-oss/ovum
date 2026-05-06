@@ -1214,4 +1214,4 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "fdc9f9d78ed6f6fef6b3f534b14ffbea3ff8fb7c29c3586d1839df15c2fe57b5"
+content-hash = "0f18494e1502fd3f4c5f22afc6b3921570c96493ed9fa5b0e979823bc9dbb17b"
