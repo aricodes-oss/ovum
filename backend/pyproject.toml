@@ -19,7 +19,7 @@ dependencies = [
   "django-valkey (>=0.4.0,<0.5.0)",
   "django-dramatiq (>=0.15.0,<0.16.0)",
   "dramatiq[redis] (>=2.1.0,<3.0.0)",
-  "gunicorn (>=23.0.0,<24.0.0)",
+  "gunicorn (>=26.0.0,<27.0.0)",
 ]
 
 
