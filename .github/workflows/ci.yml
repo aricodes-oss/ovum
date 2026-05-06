@@ -3,7 +3,7 @@ name: CI
 on: push
 
 jobs:
-  backend-lint:
+  backend:
     name: Backend (${{ matrix.tool.name }})
     runs-on: ubuntu-latest
     strategy:
@@ -16,34 +16,8 @@ jobs:
               poetry run ruff format --check .
           - name: Mypy
             command: poetry run mypy .
-    defaults:
-      run:
-        working-directory: backend
-    env:
-      DJANGO_SETTINGS_MODULE: backend.settings
-      DJANGO_CONFIGURATION: Local
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Poetry
-        run: pipx install poetry
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.14"
-          cache: "poetry"
-          cache-dependency-path: backend/poetry.lock
-
-      - name: Install dependencies
-        run: poetry install
-
-      - name: Run ${{ matrix.tool.name }}
-        run: ${{ matrix.tool.command }}
-
-  backend-test:
-    name: Backend (Pytest)
-    runs-on: ubuntu-latest
+          - name: Pytest
+            command: poetry run pytest
     defaults:
       run:
         working-directory: backend
@@ -89,8 +63,8 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Run pytest
-        run: poetry run pytest
+      - name: Run ${{ matrix.tool.name }}
+        run: ${{ matrix.tool.command }}
 
   frontend:
     name: Frontend (${{ matrix.tool.name }})
@@ -105,6 +79,8 @@ jobs:
             command: npx tsc --noEmit
           - name: Build
             command: npm run build
+          - name: Vitest
+            command: npm test -- --run
     defaults:
       run:
         working-directory: frontend
@@ -123,28 +99,6 @@ jobs:
 
       - name: Run ${{ matrix.tool.name }}
         run: ${{ matrix.tool.command }}
-
-  frontend-test:
-    name: Frontend (Vitest)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "25"
-          cache: "npm"
-          cache-dependency-path: frontend/package-lock.json
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run Vitest
-        run: npm test -- --run
 
   api-drift:
     name: API Client Drift Check
