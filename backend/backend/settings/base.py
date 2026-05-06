@@ -1,7 +1,6 @@
 from pathlib import Path
 
 from configurations import Configuration
-from configurations.values import DatabaseURLValue
 
 
 class Base(Configuration):
@@ -54,10 +53,6 @@ class Base(Configuration):
     ]
 
     WSGI_APPLICATION = "backend.wsgi.application"
-
-    DATABASES = DatabaseURLValue("postgres://postgres:postgres@database/postgres")
-
-    VALKEY_URL = "redis://cache:6379"
 
     @property
     def CACHES(self) -> dict:

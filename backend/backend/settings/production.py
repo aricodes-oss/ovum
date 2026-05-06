@@ -40,5 +40,3 @@ class Production(Base):
     EMAIL = EmailURLValue("console://")
     DEFAULT_FROM_EMAIL = Value("webmaster@localhost")
     SERVER_EMAIL = Value("root@localhost")
-
-    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
