@@ -1,4 +1,4 @@
-FROM node:25
+FROM node:26
 
 COPY package.json package-lock.json ./
 RUN npm install --omit=dev
