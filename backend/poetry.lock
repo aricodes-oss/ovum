@@ -304,14 +304,14 @@ typing-extensions = "*"
 
 [[package]]
 name = "django-valkey"
-version = "0.4.0"
+version = "0.4.1"
 description = "a valkey backend for django"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "django_valkey-0.4.0-py3-none-any.whl", hash = "sha256:48302d381e152b2def5d859232ff59db5839387ffe01b17ae4cf75736585a8ad"},
-    {file = "django_valkey-0.4.0.tar.gz", hash = "sha256:738588747c61cfcffa04129b738c46b65bfa68971b680b4cdb9e88699cff6f89"},
+    {file = "django_valkey-0.4.1-py3-none-any.whl", hash = "sha256:50509c60be59f61f6094720c3e326a22f54c6a3537e4729b9c63aa2e83c69e0b"},
+    {file = "django_valkey-0.4.1.tar.gz", hash = "sha256:312f1096971cfb3d0fa4ee3e8a9b1b9e657104f68a91fa3e9e8a96bec83848e5"},
 ]
 
 [package.dependencies]
@@ -324,8 +324,8 @@ libvalkey = ["libvalkey (>=4.0.1)"]
 lz4 = ["lz4 (>=4.3.3)"]
 msgpack = ["msgpack (>=1.1.0)"]
 msgspec = ["msgspec (>=0.19.0)"]
-pyzstd = ["backports-zstd (>=1.0.0)"]
-zstd = ["backports-zstd (>=1.0.0)"]
+pyzstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
+zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 
 [[package]]
 name = "djangorestframework"
@@ -1215,4 +1215,4 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "45e0eb2f9f8a8879655e1ef06dcaf10e60f30e554d8fb753399680a0d6fbb191"
+content-hash = "aec16d342d854b36ea2945da62725f0719b2c86bbbbd3963f67cb164f68f911e"
