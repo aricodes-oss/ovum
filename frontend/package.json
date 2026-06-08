@@ -36,7 +36,7 @@
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
     "eslint-plugin-sonarjs": "^4.0.3",
-    "eslint-plugin-unicorn": "^64.0.0",
+    "eslint-plugin-unicorn": "^65.0.0",
     "@playwright/test": "^1.60.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
