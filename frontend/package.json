@@ -43,7 +43,7 @@
     "@vitejs/plugin-react": "^6.0.2",
     "jsdom": "^29.1.1",
     "openapi3-ts": "^4.6.0",
-    "orval": "^8.9.1",
+    "orval": "^8.15.0",
     "prettier": "^3.8.3",
     "typescript": "^6",
     "vitest": "^4.1.8"
