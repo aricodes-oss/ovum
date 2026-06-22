@@ -17,7 +17,7 @@
     "@types/set-cookie-parser": "^2.4.10",
     "axios": "^1.18.0",
     "js-cookie": "^3.0.8",
-    "next": "16.2.7",
+    "next": "16.2.9",
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "set-cookie-parser": "^3.1.0"
