@@ -382,26 +382,26 @@ requests = ["types-requests"]
 
 [[package]]
 name = "dramatiq"
-version = "2.1.0"
+version = "2.2.0"
 description = "Background Processing for Python 3."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "dramatiq-2.1.0-py3-none-any.whl", hash = "sha256:3ef940c2815722d3679aed79ef96c805f02fd33d4361529b2de30f01511ca44d"},
-    {file = "dramatiq-2.1.0.tar.gz", hash = "sha256:cf81550729de6cf64234b05bd63970645654aaf38967faa7a2b6e401384bb090"},
+    {file = "dramatiq-2.2.0-py3-none-any.whl", hash = "sha256:2b2aa244b4098e154600c47cdb2c04cec6c3af44e9e159c319c6fc8b6f0ba90e"},
+    {file = "dramatiq-2.2.0.tar.gz", hash = "sha256:70c9278b0a9b880aeb23b8e09c9d43b1421ac8e807ef18903f6dd059130474a1"},
 ]
 
 [package.dependencies]
-redis = {version = ">=4.0,<8.0", optional = true, markers = "extra == \"redis\""}
+redis = {version = ">=4.0,<9.0", optional = true, markers = "extra == \"redis\""}
 
 [package.extras]
-all = ["gevent (>=25.9.1)", "pika (>=1.0,<2.0)", "prometheus-client (>=0.2)", "pylibmc (>=1.5,<2.0)", "redis (>=4.0,<8.0)", "watchdog (>=6.0.0)"]
+all = ["gevent (>=25.9.1)", "pika (>=1.0,<2.0)", "prometheus-client (>=0.2)", "pylibmc (>=1.5,<2.0)", "redis (>=4.0,<9.0)", "watchdog (>=6.0.0)"]
 gevent = ["gevent (>=25.9.1)"]
 memcached = ["pylibmc (>=1.5,<2.0)"]
 prometheus = ["prometheus-client (>=0.2)"]
 rabbitmq = ["pika (>=1.0,<2.0)"]
-redis = ["redis (>=4.0,<8.0)"]
+redis = ["redis (>=4.0,<9.0)"]
 watch = ["watchdog (>=6.0.0)"]
 
 [[package]]
@@ -1215,4 +1215,4 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "4fbbb5824b36324b72d87299adb02974df2a1a54ea48de44a828a1651ea622f5"
+content-hash = "b412ced524d285a2ab7831ef42612c821e5f1317d32d4f971ef5d6b91f1679cf"
