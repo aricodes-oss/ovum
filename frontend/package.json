@@ -44,7 +44,7 @@
     "jsdom": "^29.1.1",
     "openapi3-ts": "^4.6.0",
     "orval": "^8.9.1",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.3",
     "typescript": "^6",
     "vitest": "^4.1.9"
   },
