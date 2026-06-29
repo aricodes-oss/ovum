@@ -20,7 +20,7 @@
     "next": "16.2.9",
     "react": "19.2.5",
     "react-dom": "19.2.5",
-    "set-cookie-parser": "^3.1.0"
+    "set-cookie-parser": "^3.1.1"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.101.0",
