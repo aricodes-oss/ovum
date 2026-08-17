@@ -264,14 +264,14 @@ dev = ["flake8", "flake8-quotes", "isort", "pytest", "pytest-cov", "pytest-djang
 
 [[package]]
 name = "django-stubs"
-version = "6.0.8"
+version = "6.1.0"
 description = "Mypy stubs for Django"
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.11"
 groups = ["main", "dev"]
 files = [
-    {file = "django_stubs-6.0.8-py3-none-any.whl", hash = "sha256:cac775d239911c232f9fe46e331385cf7dbb12ca1ba8aca165ad12954b25c433"},
-    {file = "django_stubs-6.0.8.tar.gz", hash = "sha256:e4b8472e4bd38d4d3e327494346167c94021ac63ee556fe7efbdab5cd0bccd99"},
+    {file = "django_stubs-6.1.0-py3-none-any.whl", hash = "sha256:63b23ccca2616d464ed7e37d1ce44960315cb3cecab75b23c928467ef125e560"},
+    {file = "django_stubs-6.1.0.tar.gz", hash = "sha256:b6aecc5c738a103135f76ba160a6f75e3b27dcf0200c64d7226018cdbc2340dd"},
 ]
 
 [package.dependencies]
@@ -1218,4 +1218,4 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "04d5e3b8c29216e0a909ce0319db8c582e12897adac3142b8033807d494e6cc0"
+content-hash = "e4894abdb2ac4aa0d65bd69e923cbb382608cf452a7ee18ccfa8755fc3cdcab7"
