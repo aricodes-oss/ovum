@@ -382,14 +382,14 @@ requests = ["types-requests"]
 
 [[package]]
 name = "dramatiq"
-version = "2.2.0"
+version = "2.2.1"
 description = "Background Processing for Python 3."
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "dramatiq-2.2.0-py3-none-any.whl", hash = "sha256:2b2aa244b4098e154600c47cdb2c04cec6c3af44e9e159c319c6fc8b6f0ba90e"},
-    {file = "dramatiq-2.2.0.tar.gz", hash = "sha256:70c9278b0a9b880aeb23b8e09c9d43b1421ac8e807ef18903f6dd059130474a1"},
+    {file = "dramatiq-2.2.1-py3-none-any.whl", hash = "sha256:4e2466d07d5a1c4910b49944e5b45704c123b82325384e1319f6d08d94559c46"},
+    {file = "dramatiq-2.2.1.tar.gz", hash = "sha256:f9fbbd2feea27b3fa4085446242a24d86f78288b20c78a93f9f0bdbd7d908cd5"},
 ]
 
 [package.dependencies]
@@ -1216,4 +1216,4 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "18d7b34fdaaae57a087f53fcf5be4761c92ff14f66371b2c1babb4135232075b"
+content-hash = "3421ee221ee08f260d8292113ded3e38f3f0501523d0b868224903a3e4be56b9"
