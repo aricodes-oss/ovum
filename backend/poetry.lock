@@ -304,18 +304,18 @@ typing-extensions = "*"
 
 [[package]]
 name = "django-valkey"
-version = "0.4.1"
+version = "0.5.0"
 description = "a valkey backend for django"
 optional = false
 python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "django_valkey-0.4.1-py3-none-any.whl", hash = "sha256:50509c60be59f61f6094720c3e326a22f54c6a3537e4729b9c63aa2e83c69e0b"},
-    {file = "django_valkey-0.4.1.tar.gz", hash = "sha256:312f1096971cfb3d0fa4ee3e8a9b1b9e657104f68a91fa3e9e8a96bec83848e5"},
+    {file = "django_valkey-0.5.0-py3-none-any.whl", hash = "sha256:bf91682e5cd733960aecc72421272513c12ce8efc4aa9c70bd8994540ea28f6b"},
+    {file = "django_valkey-0.5.0.tar.gz", hash = "sha256:fdd1983be15a04b93c34b3b1c473b559b1b94ce7b95d3db2760f121b80e38ee1"},
 ]
 
 [package.dependencies]
-django = ">=4.2,<5.0 || >=5.2.dev0"
+django = ">=5.2"
 valkey = ">=6.0.2"
 
 [package.extras]
@@ -1216,4 +1216,4 @@ ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==23.2.1)", "requests (>=2.31.0)"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "017d9a05d4df736f6ff4b050e3ec42ae64f34aa460505671d3cc8a8b031101b1"
+content-hash = "400f4bca6f2245c2f63e55c08d95851c2d5924dba9948cdecc2afa30502ea852"
